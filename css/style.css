@@ -16,15 +16,17 @@ body {
 
 .card {
   background-color: white;
-  width: 70%;
+  width: 80%;
   margin: 0 auto;
   min-height: 153px;
   border-radius: 5px;
-  -webkit-box-shadow: 5px 5px 15px 5px rgba(120, 180, 230, 0.4);
-          box-shadow: 5px 5px 15px 5px rgba(120, 180, 230, 0.4);
-  padding: 0 1.5rem;
+  -webkit-box-shadow: 3px 10px 15px 2px rgba(2, 82, 82, 0.13);
+          box-shadow: 3px 10px 15px 2px rgba(2, 82, 82, 0.13);
+  padding: 0 2rem;
   border-left: 5px solid transparent;
-  disply: flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .card--highlight {
@@ -39,8 +41,8 @@ body {
 
 .card__body {
   height: 100%;
-  width: 40%;
-  padding: 1.5rem 0;
+  width: 50%;
+  padding: 2rem 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -60,7 +62,34 @@ body {
 }
 
 .card__tags {
-  width: 60%;
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.card__tag {
+  margin-left: 1rem;
+  background-color: #eef6f6;
+  color: #5ba4a4;
+  padding: 6px 10px;
+  border-radius: 3px;
+  font-weight: 700;
+}
+
+.card__tag:hover {
+  cursor: pointer;
+  color: #eef6f6;
+  background-color: #5ba4a4;
 }
 
 .card__img {
@@ -81,6 +110,7 @@ body {
 
 .description-tag {
   padding-right: 30px;
+  color: #7b8e8e;
 }
 
 .description-tag:first-child {
