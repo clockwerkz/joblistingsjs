@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@500;700&display=swap");
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: 'Spartan', sans-serif;
+  background-color: #f0fafb;
+  padding-top: 3rem;
+}
+
+.default-text {
+  margin-top: 4rem;
+}
+
+.card {
+  background-color: white;
+  width: 70%;
+  margin: 0 auto;
+  min-height: 153px;
+  border-radius: 5px;
+  -webkit-box-shadow: 5px 5px 15px 5px rgba(120, 180, 230, 0.4);
+          box-shadow: 5px 5px 15px 5px rgba(120, 180, 230, 0.4);
+  padding: 0 1.5rem;
+  border-left: 5px solid transparent;
+  disply: flex;
+}
+
+.card--highlight {
+  border-color: #5ba4a4;
+}
+
+.card__title {
+  font-size: 1.2rem;
+  margin: 0;
+  color: #5da5a2;
+}
+
+.card__body {
+  height: 100%;
+  width: 40%;
+  padding: 1.5rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.card__info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.card__tags {
+  width: 60%;
+}
+
+.card__img {
+  height: 89px;
+  width: 89px;
+  background-color: #5ba4a4;
+  border-radius: 50%;
+  margin-right: 2.2rem;
+}
+
+.card__description {
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.description-tag {
+  padding-right: 30px;
+}
+
+.description-tag:first-child {
+  list-style: none;
+}
+
+.company {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 24px;
+}
+
+.company__title {
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.company__tags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.company__tag {
+  font-size: 0.6rem;
+  color: white;
+  background-color: #5da5a2;
+  padding: 5px 8px;
+  border-radius: 20px;
+  margin-left: 5px;
+}
+/*# sourceMappingURL=style.css.map */
