@@ -1,59 +1,63 @@
-/*
-OBJ STRUCTURE 
-{
-    company: 'Photosnap',
-    position: 'Senior Frontend Developer',
-    companyTags: ['New!','Featured'],
-    img: 'images/photosnap.svg',
-    description: ['1d ago', 'Full Time', 'USA Only'],
-    tags: ['Frontend','Senior','HTML','CSS','JavaScript']
+let searchInput = [];
 
-}
-*/
-
-// {
-//   "id": 1,
-//   "company": "Photosnap",
-//   "logo": "./images/photosnap.svg",
-//   "new": true,
-//   "featured": true,
-//   "position": "Senior Frontend Developer",
-//   "role": "Frontend",
-//   "level": "Senior",
-//   "postedAt": "1d ago",
-//   "contract": "Full Time",
-//   "location": "USA Only",
-//   "languages": ["HTML", "CSS", "JavaScript"],
-//   "tools": []
-// },
-const arr = [
-    {
-        company: 'Photosnap',
-        position: 'Senior Frontend Developer',
-        new: true,
-        featured: true,
-        companyTags: ['New!','Featured'],
-        logo: './images/photosnap.svg',
-        description: ['1d ago', 'Full Time', 'USA Only'],
-        tags: ['Frontend','Senior','HTML','CSS','JavaScript']
-    
-    },
-    {
-        company: 'Manage',
-        position: 'Fullstack Developer',
-        companyTags: ['New!','Featured'],
-        img: 'images/manage.svg',
-        description: ['1d ago', 'Part Time', 'Remote'],
-        tags: ['Fullstack','Midweight','Python','React']
-    
-    }
-
-]
 
 document.addEventListener("DOMContentLoaded", ()=>{
-    render(arr);
+  const body = document.querySelector('body');
+  body.addEventListener('click', (e)=>{
+    if (e.target.classList.contains('card__tag') && searchInput.indexOf(e.target.textContent) === -1){
+      searchInput.push(e.target.textContent);
+      renderSearchBar();
+      render(searchInput.length === 0 ? data : filterSearchInput(data));
+    }
+    if (e.target.classList.contains("search__clear")){
+      searchInput = [];
+      renderSearchBar();
+    }
+    if (e.target.classList.contains("fa-times")){
+      let searchTag = e.target.parentNode.textContent.trim();
+      console.log(searchTag);
+      searchInput = searchInput.filter(tag => tag !== searchTag);
+      renderSearchBar();
+      render(searchInput.length === 0 ? data : filterSearchInput(data));
+    }
+  });
+    render(data);
+    renderSearchBar();
 });
 
+
+function filterSearchInput(data) {
+  return data.filter(job => {
+    const searchArray = job.languages.concat(job.tools);
+    searchArray.push(job.role);
+    searchArray.push(job.level);
+    let onList = true;
+    for (let i=0; i < searchInput.length; i++) {
+      console.log(job);
+      if (searchArray.indexOf(searchInput[i]) === -1) {
+        onList = false;
+      }
+    }
+    if (onList) return job;
+  });
+}
+
+
+function renderSearchBar() {
+  const searchBar = document.querySelector(".search__tags");
+  const searchBox = document.querySelector(".search");
+  if (searchInput.length === 0) {
+    searchBox.classList.remove("show");
+    searchBar.innerHTML = '';
+    render(data);
+  } else {
+    if (searchInput.length ===1) {
+      searchBox.classList.add("show");
+    }
+    const searchStrings = searchInput.map(tag => `<li class="search__tag">${tag} <i class="fas fa-times"></i></li>`).join('');
+    searchBar.innerHTML = searchStrings;
+  }
+}
 
 function render(arr) {
     const container = document.querySelector('.container');
@@ -62,16 +66,13 @@ function render(arr) {
 }
 
 
-function template(obj) {
-  const {company, logo , description, tags}  = obj;
-  const companyTags = [];
-  if (obj.new) companyTags.push("new");
-  if (obj.featured) companyTags.push("featured")
-  let companyTagsLi = companyTags.map(tag => `<li class="company__tag">${tag.toUpperCase()}</li>`).join('');
-  let descriptionLi = description.map(tag => `<li class="description-tag">${tag}</li>`).join('');
-  let tagsLi = tags.map(tag => `<li class="card__tag">${tag}</li>`).join('');
+function template(job) {
+  const {company, position, logo, postedAt, contract, location, role, level, languages, tools}  = job;
+
+  let tagsLi = languages.concat(tools).map(tag => `<li class="card__tag">${tag}</li>`).join('');
+
   return `
-    <div class="card card--highlight">
+    <div class="card  ${job.featured ? 'card--highlight' : ''}">
     <div class="card__body">
       <div class="card__img">
         <img src="${logo}" />
@@ -80,193 +81,24 @@ function template(obj) {
         <div class="company">
           <h2 class="company__title">${company}</h2>
           <ul class="company__tags">
-            ${companyTagsLi}
+            ${job.new ? '<li class="company__tag">NEW</li>' : ''}
+            ${job.featured ? '<li class="company__tag">FEATURED</li>' : ''}
           </ul>
         </div> <!-- .card__company -->
-        <h1 class="card__title">Senior Frontend Developer</h1>
+        <h1 class="card__title">${position}</h1>
         <ul class="card__description">
-            ${descriptionLi}
+          <li class="description-tag">${postedAt}</li>
+          <li class="description-tag">${contract}</li>
+          <li class="description-tag">${location}</li>
         </ul>
       </div> <!-- .card__info -->
       
     </div> <!-- .card__body -->
     <ul class="card__tags">
+    <li class="card__tag">${role}</li>
+    <li class="card__tag">${level}</li>
       ${tagsLi}
     </ul>
   </div> <!-- .card -->
     `
 }
-/*
-<!-- Item Start -->
-  <div class="default-text">
-  Photosnap
-  New!
-  Featured
-  Senior Frontend Developer
-  1d ago
-  Full Time
-  USA only
-  <!-- Role -->
-  Frontend
-  <!-- Level -->
-  Senior
-  <!-- Languages -->
-  HTML
-  CSS
-  JavaScript
-  <!-- Item End -->
-
-  
-  <!-- Item Start -->
-  Manage
-  New!
-  Featured
-  Fullstack Developer
-  1d ago
-  Part Time
-  Remote
-  <!-- Role -->
-  Fullstack
-  <!-- Level -->
-  Midweight
-  <!-- Languages -->
-  Python
-  <!-- Tools -->
-  React
-  <!-- Item End -->
-
-  <!-- Item Start -->
-  Account
-  New!
-  Junior Frontend Developer
-  2d ago
-  Part Time
-  USA only
-  <!-- Role -->
-  Frontend
-  <!-- Level -->
-  Junior
-  <!-- Languages -->
-  JavaScript
-  <!-- Tools -->
-  React
-  Sass
-  <!-- Item End -->
-
-  <!-- Item Start -->
-  MyHome
-  Junior Frontend Developer
-  5d ago
-  Contract
-  USA only
-  <!-- Role -->
-  Frontend
-  <!-- Level -->
-  Junior
-  <!-- Languages -->
-  CSS
-  JavaScript
-  <!-- Item End -->
-
-  <!-- Item Start -->
-  Loop Studios
-  Software Engineer
-  1w ago
-  Full Time
-  Worldwide
-  <!-- Role -->
-  Fullstack
-  <!-- Level -->
-  Midweight
-  <!-- Languages -->
-  JavaScript
-  Ruby
-  <!-- Tools -->
-  Sass
-  <!-- Item End -->
-
-  <!-- Item Start -->
-  FaceIt
-  Junior Backend Developer
-  2w ago
-  Full Time
-  UK only
-  <!-- Role -->
-  Backend
-  <!-- Level -->
-  Junior
-  <!-- Languages -->
-  Ruby
-  <!-- Tools -->
-  RoR
-  <!-- Item End -->
-
-  <!-- Item Start -->
-  Shortly
-  Junior Developer
-  2w ago
-  Full Time
-  Worldwide
-  <!-- Role -->
-  Frontend
-  <!-- Level -->
-  Junior
-  <!-- Languages -->
-  HTML
-  JavaScript
-  <!-- Tools -->
-  Sass
-  <!-- Item End -->
-
-  <!-- Item Start -->
-  Insure
-  Junior Frontend Developer
-  2w ago
-  Full Time
-  USA only
-  <!-- Role -->
-  Frontend
-  <!-- Level -->
-  Junior
-  <!-- Languages -->
-  JavaScript
-  <!-- Tools -->
-  Vue
-  Sass
-  <!-- Item End -->
-
-  <!-- Item Start -->
-  Eyecam Co.
-  Full Stack Engineer
-  3w ago
-  Full Time
-  Worldwide
-  <!-- Role -->
-  Fullstack
-  <!-- Level -->
-  Midweight
-  <!-- Languages -->
-  JavaScript
-  Python
-  <!-- Tools -->
-  Django
-  <!-- Item End -->
-
-  <!-- Item Start -->
-  The Air Filter Company
-  Front-end Dev
-  1mo ago
-  Part Time
-  Worldwide
-  <!-- Role -->
-  Frontend
-  <!-- Level -->
-  Junior
-  <!-- Languages -->
-  JavaScript
-  <!-- Tools -->
-  React
-  Sass
-  <!-- Item End -->
-</div>
-*/

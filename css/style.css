@@ -90,6 +90,8 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .search__tag {
@@ -99,6 +101,7 @@ header {
   padding-left: 5px;
   overflow: hidden;
   border-radius: 3px;
+  margin-left: 1rem;
 }
 
 .search__clear {
