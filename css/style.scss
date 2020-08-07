@@ -43,7 +43,6 @@ header {
 }
 .search {
   background-color: white;
-  height: 4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -74,7 +73,7 @@ header {
     padding-left: 5px;
     overflow: hidden;
     border-radius: 3px;
-    margin-left: 1rem;
+    margin: 0.5rem 0.5rem;
   }
   &__clear {
     font-size: 0.8rem;
