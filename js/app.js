@@ -11,12 +11,29 @@ OBJ STRUCTURE
 }
 */
 
+// {
+//   "id": 1,
+//   "company": "Photosnap",
+//   "logo": "./images/photosnap.svg",
+//   "new": true,
+//   "featured": true,
+//   "position": "Senior Frontend Developer",
+//   "role": "Frontend",
+//   "level": "Senior",
+//   "postedAt": "1d ago",
+//   "contract": "Full Time",
+//   "location": "USA Only",
+//   "languages": ["HTML", "CSS", "JavaScript"],
+//   "tools": []
+// },
 const arr = [
     {
         company: 'Photosnap',
         position: 'Senior Frontend Developer',
+        new: true,
+        featured: true,
         companyTags: ['New!','Featured'],
-        img: 'images/photosnap.svg',
+        logo: './images/photosnap.svg',
         description: ['1d ago', 'Full Time', 'USA Only'],
         tags: ['Frontend','Senior','HTML','CSS','JavaScript']
     
@@ -45,15 +62,19 @@ function render(arr) {
 }
 
 
-function template({company, img, companyTags, description, tags}) {
-    let companyTagsLi = companyTags.map(tag => `<li class="company__tag">${tag}</li>`).join('');
-    let descriptionLi = description.map(tag => `<li class="description-tag">${tag}</li>`).join('');
-    let tagsLi = tags.map(tag => `<li class="card__tag">${tag}</li>`).join('');
-    return `
+function template(obj) {
+  const {company, logo , description, tags}  = obj;
+  const companyTags = [];
+  if (obj.new) companyTags.push("new");
+  if (obj.featured) companyTags.push("featured")
+  let companyTagsLi = companyTags.map(tag => `<li class="company__tag">${tag.toUpperCase()}</li>`).join('');
+  let descriptionLi = description.map(tag => `<li class="description-tag">${tag}</li>`).join('');
+  let tagsLi = tags.map(tag => `<li class="card__tag">${tag}</li>`).join('');
+  return `
     <div class="card card--highlight">
     <div class="card__body">
       <div class="card__img">
-        <img src="${img}" />
+        <img src="${logo}" />
       </div>
       <div class="card__info">
         <div class="company">
