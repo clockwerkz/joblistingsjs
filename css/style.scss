@@ -182,9 +182,12 @@ header {
     font-size: 0.6rem;
     color: white;
     background-color: #5da5a2;
-    padding: 5px 8px;
+    padding: 8px;
     border-radius: 20px;
     margin-left: 5px;
+    &--featured {
+      background-color: black;
+    }
   }
 }
 

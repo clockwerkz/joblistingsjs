@@ -46,8 +46,8 @@ const view = (function(){
           <div class="company">
             <h2 class="company__title">${company}</h2>
             <ul class="company__tags">
-              ${job.new ? '<li class="company__tag">NEW</li>' : ''}
-              ${job.featured ? '<li class="company__tag">FEATURED</li>' : ''}
+              ${job.new ? '<li class="company__tag">NEW!</li>' : ''}
+              ${job.featured ? '<li class="company__tag company__tag--featured">FEATURED</li>' : ''}
             </ul>
           </div> <!-- .card__company -->
           <h1 class="card__title">${position}</h1>

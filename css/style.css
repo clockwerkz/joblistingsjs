@@ -259,9 +259,13 @@ header {
   font-size: 0.6rem;
   color: white;
   background-color: #5da5a2;
-  padding: 5px 8px;
+  padding: 8px;
   border-radius: 20px;
   margin-left: 5px;
+}
+
+.company__tag--featured {
+  background-color: black;
 }
 
 @media screen and (max-width: 1260px) {
