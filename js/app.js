@@ -40,7 +40,7 @@ const view = (function(){
       <div class="card  ${job.featured ? 'card--highlight' : ''}">
       <div class="card__body">
         <div class="card__img">
-          <img src="${logo}" />
+          <img src="${logo}" alt="${company} logo"/>
         </div>
         <div class="card__info">
           <div class="company">
